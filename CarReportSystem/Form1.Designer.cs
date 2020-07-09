@@ -57,6 +57,8 @@
             this.rbMaker = new System.Windows.Forms.GroupBox();
             this.TextReport = new System.Windows.Forms.TextBox();
             this.ofdImageOpen = new System.Windows.Forms.OpenFileDialog();
+            this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
+            this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.rbMaker.SuspendLayout();
@@ -123,7 +125,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 12);
             this.label7.TabIndex = 6;
-            this.label7.Text = "画僧：";
+            this.label7.Text = "画像：";
             // 
             // btOpenDate
             // 
@@ -133,6 +135,7 @@
             this.btOpenDate.TabIndex = 7;
             this.btOpenDate.Text = "開く";
             this.btOpenDate.UseVisualStyleBackColor = true;
+            this.btOpenDate.Click += new System.EventHandler(this.btOpenDate_Click);
             // 
             // btSaveDate
             // 
@@ -142,6 +145,7 @@
             this.btSaveDate.TabIndex = 8;
             this.btSaveDate.Text = "保存";
             this.btSaveDate.UseVisualStyleBackColor = true;
+            this.btSaveDate.Click += new System.EventHandler(this.btSaveDate_Click);
             // 
             // pbbtOpen
             // 
@@ -181,6 +185,7 @@
             this.btdgvFix.TabIndex = 12;
             this.btdgvFix.Text = "修正";
             this.btdgvFix.UseVisualStyleBackColor = true;
+            this.btdgvFix.Click += new System.EventHandler(this.btdgvFix_Click);
             // 
             // btdgvDelete
             // 
@@ -260,7 +265,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(105, 11);
+            this.radioButton3.Location = new System.Drawing.Point(107, 13);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(51, 16);
             this.radioButton3.TabIndex = 21;
@@ -271,7 +276,7 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(162, 11);
+            this.radioButton4.Location = new System.Drawing.Point(162, 13);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(52, 16);
             this.radioButton4.TabIndex = 22;
@@ -282,7 +287,7 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(220, 11);
+            this.radioButton5.Location = new System.Drawing.Point(220, 13);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(47, 16);
             this.radioButton5.TabIndex = 23;
@@ -293,7 +298,7 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(268, 11);
+            this.radioButton6.Location = new System.Drawing.Point(268, 13);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(54, 16);
             this.radioButton6.TabIndex = 24;
@@ -323,7 +328,7 @@
             this.rbMaker.Size = new System.Drawing.Size(328, 38);
             this.rbMaker.TabIndex = 28;
             this.rbMaker.TabStop = false;
-            this.rbMaker.Text = "groupBox1";
+            this.rbMaker.Text = "メーカー";
             // 
             // TextReport
             // 
@@ -336,6 +341,10 @@
             // ofdImageOpen
             // 
             this.ofdImageOpen.FileName = "openFileDialog1";
+            // 
+            // ofdOpenData
+            // 
+            this.ofdOpenData.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -407,6 +416,8 @@
         private System.Windows.Forms.GroupBox rbMaker;
         private System.Windows.Forms.TextBox TextReport;
         private System.Windows.Forms.OpenFileDialog ofdImageOpen;
+        private System.Windows.Forms.SaveFileDialog sfdSaveData;
+        private System.Windows.Forms.OpenFileDialog ofdOpenData;
     }
 }
 
