@@ -133,7 +133,7 @@
             this.btOpenDate.Name = "btOpenDate";
             this.btOpenDate.Size = new System.Drawing.Size(57, 43);
             this.btOpenDate.TabIndex = 7;
-            this.btOpenDate.Text = "開く";
+            this.btOpenDate.Text = "接続";
             this.btOpenDate.UseVisualStyleBackColor = true;
             this.btOpenDate.Click += new System.EventHandler(this.btOpenDate_Click);
             // 
