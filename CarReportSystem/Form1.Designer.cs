@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -35,7 +36,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.btOpenDate = new System.Windows.Forms.Button();
             this.btSaveDate = new System.Windows.Forms.Button();
             this.pbbtOpen = new System.Windows.Forms.Button();
             this.pbbtDelete = new System.Windows.Forms.Button();
@@ -44,21 +44,35 @@
             this.btdgvDelete = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.textCreatedDate = new System.Windows.Forms.DateTimePicker();
+            this.cerReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.infosys202001DataSet = new CarReportSystem.infosys202001DataSet();
             this.dgvList = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.makerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reportDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictueDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.cbAuthor = new System.Windows.Forms.ComboBox();
             this.cbName = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.rbToyota = new System.Windows.Forms.RadioButton();
+            this.rbNissan = new System.Windows.Forms.RadioButton();
+            this.rbHonda = new System.Windows.Forms.RadioButton();
+            this.rbSubaru = new System.Windows.Forms.RadioButton();
+            this.rbGaisya = new System.Windows.Forms.RadioButton();
+            this.rbSonota = new System.Windows.Forms.RadioButton();
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.rbMaker = new System.Windows.Forms.GroupBox();
             this.TextReport = new System.Windows.Forms.TextBox();
             this.ofdImageOpen = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
+            this.cerReportTableAdapter = new CarReportSystem.infosys202001DataSetTableAdapters.CerReportTableAdapter();
+            this.tableAdapterManager = new CarReportSystem.infosys202001DataSetTableAdapters.TableAdapterManager();
+            this.btOpenDate = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.cerReportBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202001DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.rbMaker.SuspendLayout();
@@ -127,19 +141,9 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "画像：";
             // 
-            // btOpenDate
-            // 
-            this.btOpenDate.Location = new System.Drawing.Point(10, 291);
-            this.btOpenDate.Name = "btOpenDate";
-            this.btOpenDate.Size = new System.Drawing.Size(57, 43);
-            this.btOpenDate.TabIndex = 7;
-            this.btOpenDate.Text = "接続";
-            this.btOpenDate.UseVisualStyleBackColor = true;
-            this.btOpenDate.Click += new System.EventHandler(this.btOpenDate_Click);
-            // 
             // btSaveDate
             // 
-            this.btSaveDate.Location = new System.Drawing.Point(10, 340);
+            this.btSaveDate.Location = new System.Drawing.Point(10, 342);
             this.btSaveDate.Name = "btSaveDate";
             this.btSaveDate.Size = new System.Drawing.Size(57, 40);
             this.btSaveDate.TabIndex = 8;
@@ -155,7 +159,6 @@
             this.pbbtOpen.TabIndex = 9;
             this.pbbtOpen.Text = "開く";
             this.pbbtOpen.UseVisualStyleBackColor = true;
-            this.pbbtOpen.Click += new System.EventHandler(this.pbbtOpen_Click);
             // 
             // pbbtDelete
             // 
@@ -165,7 +168,6 @@
             this.pbbtDelete.TabIndex = 10;
             this.pbbtDelete.Text = "削除";
             this.pbbtDelete.UseVisualStyleBackColor = true;
-            this.pbbtDelete.Click += new System.EventHandler(this.pbbtDelete_Click);
             // 
             // btdgvAddition
             // 
@@ -209,23 +211,89 @@
             // 
             // textCreatedDate
             // 
+            this.textCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "CreateDate", true));
+            this.textCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cerReportBindingSource, "CreateDate", true));
             this.textCreatedDate.Location = new System.Drawing.Point(73, 15);
             this.textCreatedDate.Name = "textCreatedDate";
             this.textCreatedDate.Size = new System.Drawing.Size(200, 19);
             this.textCreatedDate.TabIndex = 15;
             // 
+            // cerReportBindingSource
+            // 
+            this.cerReportBindingSource.DataMember = "CerReport";
+            this.cerReportBindingSource.DataSource = this.infosys202001DataSet;
+            // 
+            // infosys202001DataSet
+            // 
+            this.infosys202001DataSet.DataSetName = "infosys202001DataSet";
+            this.infosys202001DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // dgvList
             // 
+            this.dgvList.AutoGenerateColumns = false;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvList.Location = new System.Drawing.Point(74, 263);
+            this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.createDateDataGridViewTextBoxColumn,
+            this.authorDataGridViewTextBoxColumn,
+            this.makerDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.reportDataGridViewTextBoxColumn,
+            this.pictueDataGridViewImageColumn});
+            this.dgvList.DataSource = this.cerReportBindingSource;
+            this.dgvList.Location = new System.Drawing.Point(74, 258);
             this.dgvList.Name = "dgvList";
             this.dgvList.RowTemplate.Height = 21;
+            this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvList.Size = new System.Drawing.Size(624, 146);
             this.dgvList.TabIndex = 16;
             this.dgvList.Click += new System.EventHandler(this.dgvList_Click);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // createDateDataGridViewTextBoxColumn
+            // 
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            // 
+            // authorDataGridViewTextBoxColumn
+            // 
+            this.authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
+            this.authorDataGridViewTextBoxColumn.HeaderText = "Author";
+            this.authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
+            // 
+            // makerDataGridViewTextBoxColumn
+            // 
+            this.makerDataGridViewTextBoxColumn.DataPropertyName = "Maker";
+            this.makerDataGridViewTextBoxColumn.HeaderText = "Maker";
+            this.makerDataGridViewTextBoxColumn.Name = "makerDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // reportDataGridViewTextBoxColumn
+            // 
+            this.reportDataGridViewTextBoxColumn.DataPropertyName = "Report";
+            this.reportDataGridViewTextBoxColumn.HeaderText = "Report";
+            this.reportDataGridViewTextBoxColumn.Name = "reportDataGridViewTextBoxColumn";
+            // 
+            // pictueDataGridViewImageColumn
+            // 
+            this.pictueDataGridViewImageColumn.DataPropertyName = "Pictue";
+            this.pictueDataGridViewImageColumn.HeaderText = "Pictue";
+            this.pictueDataGridViewImageColumn.Name = "pictueDataGridViewImageColumn";
+            // 
             // cbAuthor
             // 
+            this.cbAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "Author", true));
             this.cbAuthor.FormattingEnabled = true;
             this.cbAuthor.Location = new System.Drawing.Point(73, 50);
             this.cbAuthor.Name = "cbAuthor";
@@ -234,81 +302,83 @@
             // 
             // cbName
             // 
+            this.cbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "Name", true));
             this.cbName.FormattingEnabled = true;
             this.cbName.Location = new System.Drawing.Point(74, 114);
             this.cbName.Name = "cbName";
             this.cbName.Size = new System.Drawing.Size(250, 20);
             this.cbName.TabIndex = 18;
             // 
-            // radioButton1
+            // rbToyota
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 16);
-            this.radioButton1.TabIndex = 19;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "トヨタ";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbToyota.AutoSize = true;
+            this.rbToyota.Location = new System.Drawing.Point(6, 13);
+            this.rbToyota.Name = "rbToyota";
+            this.rbToyota.Size = new System.Drawing.Size(47, 16);
+            this.rbToyota.TabIndex = 19;
+            this.rbToyota.TabStop = true;
+            this.rbToyota.Text = "トヨタ";
+            this.rbToyota.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbNissan
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(54, 13);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(47, 16);
-            this.radioButton2.TabIndex = 20;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "日産";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbNissan.AutoSize = true;
+            this.rbNissan.Location = new System.Drawing.Point(54, 13);
+            this.rbNissan.Name = "rbNissan";
+            this.rbNissan.Size = new System.Drawing.Size(47, 16);
+            this.rbNissan.TabIndex = 20;
+            this.rbNissan.TabStop = true;
+            this.rbNissan.Text = "日産";
+            this.rbNissan.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbHonda
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(107, 13);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(51, 16);
-            this.radioButton3.TabIndex = 21;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "ホンダ";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbHonda.AutoSize = true;
+            this.rbHonda.Location = new System.Drawing.Point(107, 13);
+            this.rbHonda.Name = "rbHonda";
+            this.rbHonda.Size = new System.Drawing.Size(51, 16);
+            this.rbHonda.TabIndex = 21;
+            this.rbHonda.TabStop = true;
+            this.rbHonda.Text = "ホンダ";
+            this.rbHonda.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // rbSubaru
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(162, 13);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(52, 16);
-            this.radioButton4.TabIndex = 22;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "スバル";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbSubaru.AutoSize = true;
+            this.rbSubaru.Location = new System.Drawing.Point(162, 13);
+            this.rbSubaru.Name = "rbSubaru";
+            this.rbSubaru.Size = new System.Drawing.Size(52, 16);
+            this.rbSubaru.TabIndex = 22;
+            this.rbSubaru.TabStop = true;
+            this.rbSubaru.Text = "スバル";
+            this.rbSubaru.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // rbGaisya
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(220, 13);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(47, 16);
-            this.radioButton5.TabIndex = 23;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "外車";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.rbGaisya.AutoSize = true;
+            this.rbGaisya.Location = new System.Drawing.Point(220, 13);
+            this.rbGaisya.Name = "rbGaisya";
+            this.rbGaisya.Size = new System.Drawing.Size(47, 16);
+            this.rbGaisya.TabIndex = 23;
+            this.rbGaisya.TabStop = true;
+            this.rbGaisya.Text = "外車";
+            this.rbGaisya.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // rbSonota
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(268, 13);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(54, 16);
-            this.radioButton6.TabIndex = 24;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "その他";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.rbSonota.AutoSize = true;
+            this.rbSonota.Location = new System.Drawing.Point(268, 13);
+            this.rbSonota.Name = "rbSonota";
+            this.rbSonota.Size = new System.Drawing.Size(54, 16);
+            this.rbSonota.TabIndex = 24;
+            this.rbSonota.TabStop = true;
+            this.rbSonota.Text = "その他";
+            this.rbSonota.UseVisualStyleBackColor = true;
             // 
             // pbPicture
             // 
             this.pbPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pbPicture.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.cerReportBindingSource, "Pictue", true));
             this.pbPicture.Location = new System.Drawing.Point(461, 38);
             this.pbPicture.Name = "pbPicture";
             this.pbPicture.Size = new System.Drawing.Size(237, 185);
@@ -317,12 +387,12 @@
             // 
             // rbMaker
             // 
-            this.rbMaker.Controls.Add(this.radioButton5);
-            this.rbMaker.Controls.Add(this.radioButton4);
-            this.rbMaker.Controls.Add(this.radioButton3);
-            this.rbMaker.Controls.Add(this.radioButton6);
-            this.rbMaker.Controls.Add(this.radioButton2);
-            this.rbMaker.Controls.Add(this.radioButton1);
+            this.rbMaker.Controls.Add(this.rbGaisya);
+            this.rbMaker.Controls.Add(this.rbSubaru);
+            this.rbMaker.Controls.Add(this.rbHonda);
+            this.rbMaker.Controls.Add(this.rbSonota);
+            this.rbMaker.Controls.Add(this.rbNissan);
+            this.rbMaker.Controls.Add(this.rbToyota);
             this.rbMaker.Location = new System.Drawing.Point(73, 76);
             this.rbMaker.Name = "rbMaker";
             this.rbMaker.Size = new System.Drawing.Size(328, 38);
@@ -332,6 +402,7 @@
             // 
             // TextReport
             // 
+            this.TextReport.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "Report", true));
             this.TextReport.Location = new System.Drawing.Point(73, 152);
             this.TextReport.Multiline = true;
             this.TextReport.Name = "TextReport";
@@ -345,6 +416,26 @@
             // ofdOpenData
             // 
             this.ofdOpenData.FileName = "openFileDialog1";
+            // 
+            // cerReportTableAdapter
+            // 
+            this.cerReportTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CerReportTableAdapter = this.cerReportTableAdapter;
+            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202001DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // btOpenDate
+            // 
+            this.btOpenDate.Location = new System.Drawing.Point(10, 277);
+            this.btOpenDate.Name = "btOpenDate";
+            this.btOpenDate.Size = new System.Drawing.Size(57, 43);
+            this.btOpenDate.TabIndex = 7;
+            this.btOpenDate.Text = "接続";
+            this.btOpenDate.UseVisualStyleBackColor = true;
+            this.btOpenDate.Click += new System.EventHandler(this.btOpenDate_Click_1);
             // 
             // Form1
             // 
@@ -376,6 +467,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.cerReportBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202001DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.rbMaker.ResumeLayout(false);
@@ -394,7 +487,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btOpenDate;
         private System.Windows.Forms.Button btSaveDate;
         private System.Windows.Forms.Button pbbtOpen;
         private System.Windows.Forms.Button pbbtDelete;
@@ -406,18 +498,30 @@
         private System.Windows.Forms.DataGridView dgvList;
         private System.Windows.Forms.ComboBox cbAuthor;
         private System.Windows.Forms.ComboBox cbName;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton rbToyota;
+        private System.Windows.Forms.RadioButton rbNissan;
+        private System.Windows.Forms.RadioButton rbHonda;
+        private System.Windows.Forms.RadioButton rbSubaru;
+        private System.Windows.Forms.RadioButton rbGaisya;
+        private System.Windows.Forms.RadioButton rbSonota;
         private System.Windows.Forms.PictureBox pbPicture;
         private System.Windows.Forms.GroupBox rbMaker;
         private System.Windows.Forms.TextBox TextReport;
         private System.Windows.Forms.OpenFileDialog ofdImageOpen;
         private System.Windows.Forms.SaveFileDialog sfdSaveData;
         private System.Windows.Forms.OpenFileDialog ofdOpenData;
+        private infosys202001DataSet infosys202001DataSet;
+        private System.Windows.Forms.BindingSource cerReportBindingSource;
+        private infosys202001DataSetTableAdapters.CerReportTableAdapter cerReportTableAdapter;
+        private infosys202001DataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn makerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn reportDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn pictueDataGridViewImageColumn;
+        private System.Windows.Forms.Button btOpenDate;
     }
 }
 

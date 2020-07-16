@@ -20,13 +20,15 @@ namespace CarReportSystem
         public Form1()
         {
             InitializeComponent();
-            dgvList.DataSource = cars;
+           //dgvList.DataSource = cars;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            
+            // TODO: このコード行はデータを 'infosys202001DataSet.CerReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+
+
+
         }
 
         //データの追加
@@ -67,27 +69,27 @@ namespace CarReportSystem
 
         private CarReport.CarMaker RadioButtonsaiko()
         {
-            if (radioButton1.Checked == true)
+            if (rbToyota.Checked == true)
             {
                 return CarReport.CarMaker.トヨタ;
             }
-            else if (radioButton2.Checked == true)
+            else if (rbNissan.Checked == true)
             {
                 return CarReport.CarMaker.日産;
             }
-            else if (radioButton3.Checked == true)
+            else if (rbHonda.Checked == true)
             {
                 return CarReport.CarMaker.ホンダ;
             }
-            else if (radioButton4.Checked == true)
+            else if (rbSubaru.Checked == true)
             {
                 return CarReport.CarMaker.スバル;
             }
-            else if (radioButton5.Checked == true)
+            else if (rbGaisya.Checked == true)
             {
                 return CarReport.CarMaker.外車;
             }
-            else if (radioButton6.Checked == true)
+            else if (rbSonota.Checked == true)
             {
                 return CarReport.CarMaker.その他;
             }
@@ -110,8 +112,18 @@ namespace CarReportSystem
 
         private void btdgvFix_Click(object sender, EventArgs e)
         {
+            dgvList.CurrentRow.Cells[2].Value = cbAuthor.Text;
+
+            //データベースの反映
+            this.Validate();
+            this.cerReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202001DataSet);
+
+
+            #region 前の処理
             try
             {
+                
                 //変更対象のレコード（オブジェクト）
                 CarReport selectedCar = cars[dgvList.CurrentRow.Index];
                 selectedCar.Author = cbAuthor.Text;
@@ -133,50 +145,79 @@ namespace CarReportSystem
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            #endregion
         }
 
         private void dgvList_Click(object sender, EventArgs e)
         {
-            CarReport selectedCar = cars[dgvList.CurrentRow.Index];
-            textCreatedDate.Value = selectedCar.CreatedDate;
-            cbAuthor.Text = selectedCar.Author;
-            cbName.Text = selectedCar.Name;
-            TextReport.Text = selectedCar.Report;
-            pbPicture.Image = selectedCar.Picture;
-            switch (selectedCar.Maker)
+            #region　前回の処理
+            //CarReport selectedCar = cars[dgvList.CurrentRow.Index];
+            //textCreatedDate.Value = selectedCar.CreatedDate;
+            //cbAuthor.Text = selectedCar.Author;
+            //cbName.Text = selectedCar.Name;
+            //TextReport.Text = selectedCar.Report;
+            //pbPicture.Image = selectedCar.Picture;
+            //switch (selectedCar.Maker)
+            //{
+            //    case CarReport.CarMaker.DEFAULT:
+            //        break;
+            //    case CarReport.CarMaker.トヨタ:
+            //        radioButton1.Checked = true;
+            //        break;
+            //    case CarReport.CarMaker.日産:
+            //        radioButton2.Checked = true;
+            //        break;
+            //    case CarReport.CarMaker.ホンダ:
+            //        radioButton3.Checked = true;
+            //        break;
+            //    case CarReport.CarMaker.スバル:
+            //        radioButton4.Checked = true;
+            //        break;
+            //    case CarReport.CarMaker.外車:
+            //        radioButton5.Checked = true;
+            //        break;
+            //    case CarReport.CarMaker.その他:
+            //        radioButton6.Checked = true;
+            //        break;
+            //}
+            #endregion
+
+            //選択したレコード（行）のインデックスで指定した項目を取り出す。
+            string Maker = dgvList.CurrentRow.Cells[3].Value.ToString();
+
+            switch (Maker)
             {
-                case CarReport.CarMaker.DEFAULT:
+                case "トヨタ":
+                    rbToyota.Checked = true;
                     break;
-                case CarReport.CarMaker.トヨタ:
-                    radioButton1.Checked = true;
+                case "日産":
+                    rbNissan.Checked = true;
                     break;
-                case CarReport.CarMaker.日産:
-                    radioButton2.Checked = true;
+                case "ホンダ":
+                    rbHonda.Checked = true;
                     break;
-                case CarReport.CarMaker.ホンダ:
-                    radioButton3.Checked = true;
+                case "スバル":
+                    rbSubaru.Checked = true;
                     break;
-                case CarReport.CarMaker.スバル:
-                    radioButton4.Checked = true;
+                case "外車":
+                    rbGaisya.Checked = true;
                     break;
-                case CarReport.CarMaker.外車:
-                    radioButton5.Checked = true;
-                    break;
-                case CarReport.CarMaker.その他:
-                    radioButton6.Checked = true;
+                case "その他":
+                    rbSonota.Checked = true;
                     break;
             }
         }
 
         private void pbbtOpen_Click(object sender, EventArgs e)
         {
-           if (ofdImageOpen.ShowDialog() == DialogResult.OK)
-            {
-                //選択した画像をピクチャーボックスに表示
-                pbPicture.Image = Image.FromFile(ofdImageOpen.FileName);
-                //ピクチャーボックスのサイズに画像を調節
-                pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-            }
+            if (ofdImageOpen.ShowDialog() == DialogResult.OK)
+             {
+                 //選択した画像をピクチャーボックスに表示
+                 pbPicture.Image = Image.FromFile(ofdImageOpen.FileName);
+                 //ピクチャーボックスのサイズに画像を調節
+                 pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+             }
+            
         }
         //画像を削除
         private void pbbtDelete_Click(object sender, EventArgs e)
@@ -251,8 +292,9 @@ namespace CarReportSystem
 
         private void btOpenDate_Click(object sender, EventArgs e)
         {
+            #region 前回の処理
             //オープンファイルダイアログを表示
-            if (ofdOpenData.ShowDialog() == DialogResult.OK)
+            /*if (ofdOpenData.ShowDialog() == DialogResult.OK)
             {
                 using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
                 {
@@ -271,7 +313,30 @@ namespace CarReportSystem
                         throw;
                     }
                 }
-            }
-        } 
+            }*/
+            #endregion
+        }
+
+        private void btOpenDate_Click_1(object sender, EventArgs e)
+        {
+            this.cerReportTableAdapter.Fill(this.infosys202001DataSet.CerReport);
+
+        }
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] byteData)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(byteData);
+            return img;
+        }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return byteData;
+        }
     }
 }
