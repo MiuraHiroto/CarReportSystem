@@ -150,41 +150,29 @@ namespace CarReportSystem
 
         private void dgvList_Click(object sender, EventArgs e)
         {
-            #region　前回の処理
-            //CarReport selectedCar = cars[dgvList.CurrentRow.Index];
-            //textCreatedDate.Value = selectedCar.CreatedDate;
-            //cbAuthor.Text = selectedCar.Author;
-            //cbName.Text = selectedCar.Name;
-            //TextReport.Text = selectedCar.Report;
-            //pbPicture.Image = selectedCar.Picture;
-            //switch (selectedCar.Maker)
-            //{
-            //    case CarReport.CarMaker.DEFAULT:
-            //        break;
-            //    case CarReport.CarMaker.トヨタ:
-            //        radioButton1.Checked = true;
-            //        break;
-            //    case CarReport.CarMaker.日産:
-            //        radioButton2.Checked = true;
-            //        break;
-            //    case CarReport.CarMaker.ホンダ:
-            //        radioButton3.Checked = true;
-            //        break;
-            //    case CarReport.CarMaker.スバル:
-            //        radioButton4.Checked = true;
-            //        break;
-            //    case CarReport.CarMaker.外車:
-            //        radioButton5.Checked = true;
-            //        break;
-            //    case CarReport.CarMaker.その他:
-            //        radioButton6.Checked = true;
-            //        break;
-            //}
-            #endregion
+            try
+            {
+                //選択したレコード（行）のインデックスで指定した項目を取り出す。
+                textCreatedDate.Value = (DateTime)dgvList.CurrentRow.Cells[1].Value;
+                //編集者
+                cbAuthor.Text = dgvList.CurrentRow.Cells[2].Value.ToString();
+                       
+                cbName.Text = dgvList.CurrentRow.Cells[4].Value.ToString();
+                TextReport.Text = dgvList.CurrentRow.Cells[5].Value.ToString();
+                pbPicture.Image = ByteArrayToImage((byte[])dgvList.CurrentRow.Cells[6].Value);
 
-            //選択したレコード（行）のインデックスで指定した項目を取り出す。
-            string Maker = dgvList.CurrentRow.Cells[3].Value.ToString();
-
+               
+                
+            }
+            catch(InvalidCastException)//画像がDBに登録されてない時
+            {
+                pbPicture.Image = null;
+            }
+            catch(Exception ex)//上記以外のデータを全て拾う
+            {
+                MessageBox.Show(ex.Message);
+            }
+            var Maker = dgvList.CurrentRow.Cells[3].Value.ToString();
             switch (Maker)
             {
                 case "トヨタ":
@@ -233,6 +221,7 @@ namespace CarReportSystem
 
         private void btdgvDelete_Click(object sender, EventArgs e)
         {
+            #region 前回の処理
             try
             {
                 CarReport selectedCar = cars[dgvList.CurrentRow.Index];
@@ -262,7 +251,8 @@ namespace CarReportSystem
             {
                 Console.WriteLine(ex.Message);
             }
-            
+            #endregion
+
             
         }
 
@@ -337,6 +327,11 @@ namespace CarReportSystem
             ImageConverter imgconv = new ImageConverter();
             byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
             return byteData;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

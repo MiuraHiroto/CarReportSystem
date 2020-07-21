@@ -71,11 +71,16 @@
             this.cerReportTableAdapter = new CarReportSystem.infosys202001DataSetTableAdapters.CerReportTableAdapter();
             this.tableAdapterManager = new CarReportSystem.infosys202001DataSetTableAdapters.TableAdapterManager();
             this.btOpenDate = new System.Windows.Forms.Button();
+            this.tbSearchCarName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btSearchExe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cerReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202001DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.rbMaker.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -211,8 +216,6 @@
             // 
             // textCreatedDate
             // 
-            this.textCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "CreateDate", true));
-            this.textCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cerReportBindingSource, "CreateDate", true));
             this.textCreatedDate.Location = new System.Drawing.Point(73, 15);
             this.textCreatedDate.Name = "textCreatedDate";
             this.textCreatedDate.Size = new System.Drawing.Size(200, 19);
@@ -293,7 +296,6 @@
             // 
             // cbAuthor
             // 
-            this.cbAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "Author", true));
             this.cbAuthor.FormattingEnabled = true;
             this.cbAuthor.Location = new System.Drawing.Point(73, 50);
             this.cbAuthor.Name = "cbAuthor";
@@ -302,7 +304,6 @@
             // 
             // cbName
             // 
-            this.cbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "Name", true));
             this.cbName.FormattingEnabled = true;
             this.cbName.Location = new System.Drawing.Point(74, 114);
             this.cbName.Name = "cbName";
@@ -378,7 +379,6 @@
             // pbPicture
             // 
             this.pbPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pbPicture.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.cerReportBindingSource, "Pictue", true));
             this.pbPicture.Location = new System.Drawing.Point(461, 38);
             this.pbPicture.Name = "pbPicture";
             this.pbPicture.Size = new System.Drawing.Size(237, 185);
@@ -402,7 +402,6 @@
             // 
             // TextReport
             // 
-            this.TextReport.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cerReportBindingSource, "Report", true));
             this.TextReport.Location = new System.Drawing.Point(73, 152);
             this.TextReport.Multiline = true;
             this.TextReport.Name = "TextReport";
@@ -437,11 +436,51 @@
             this.btOpenDate.UseVisualStyleBackColor = true;
             this.btOpenDate.Click += new System.EventHandler(this.btOpenDate_Click_1);
             // 
+            // tbSearchCarName
+            // 
+            this.tbSearchCarName.Location = new System.Drawing.Point(39, 12);
+            this.tbSearchCarName.Name = "tbSearchCarName";
+            this.tbSearchCarName.Size = new System.Drawing.Size(220, 19);
+            this.tbSearchCarName.TabIndex = 30;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 12);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "車名";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.btSearchExe);
+            this.groupBox1.Controls.Add(this.tbSearchCarName);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Location = new System.Drawing.Point(719, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(279, 101);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "検索";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // btSearchExe
+            // 
+            this.btSearchExe.Location = new System.Drawing.Point(39, 38);
+            this.btSearchExe.Name = "btSearchExe";
+            this.btSearchExe.Size = new System.Drawing.Size(75, 23);
+            this.btSearchExe.TabIndex = 33;
+            this.btSearchExe.Text = "実行";
+            this.btSearchExe.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 450);
+            this.ClientSize = new System.Drawing.Size(1011, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.TextReport);
             this.Controls.Add(this.rbMaker);
             this.Controls.Add(this.pbPicture);
@@ -473,6 +512,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.rbMaker.ResumeLayout(false);
             this.rbMaker.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,6 +563,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn reportDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn pictueDataGridViewImageColumn;
         private System.Windows.Forms.Button btOpenDate;
+        private System.Windows.Forms.TextBox tbSearchCarName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btSearchExe;
     }
 }
 
