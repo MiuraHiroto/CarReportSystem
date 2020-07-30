@@ -329,8 +329,23 @@ namespace CarReportSystem
             return byteData;
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void btSearchExe_Click(object sender, EventArgs e)
         {
+            this.cerReportTableAdapter.FillByCarName(this.infosys202001DataSet.CerReport, tbSearchCarName.Text);
+            this.cerReportTableAdapter.FillByAndSearchButton(this.infosys202001DataSet.CerReport, tbSearchCarDateTime.Text, tbSearchCarMaker.Text, tbSearchCarName.Text);
+            this.cerReportTableAdapter.FillByOrSearchButton(this.infosys202001DataSet.CerReport, tbSearchCarDateTime.Text, tbSearchCarAuthor.Text, tbSearchCarMaker.Text, tbSearchCarName.Text);
+            //ラジオボタン処理
+            if (rbAND.Checked == true)
+            {
+                this.cerReportTableAdapter.FillByAndSearchButton
+                    (infosys202001DataSet.CerReport, tbSearchCarDateTime.Text, tbSearchCarMaker.Text, tbSearchCarName.Text);
+            }
+            else if (rbOR.Checked == true)
+            {
+                this.cerReportTableAdapter.FillByOrSearchButton
+                    (infosys202001DataSet.CerReport, tbSearchCarDateTime.Text, tbSearchCarAuthor.Text, tbSearchCarMaker.Text, tbSearchCarName.Text);
+            }
+
 
         }
     }
